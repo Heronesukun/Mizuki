@@ -17,11 +17,11 @@ import { LinkPreset } from "./types/config";
 // 移除i18n导入以避免循环依赖
 
 // 定义站点语言
-const SITE_LANG = "en"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
+const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 
 export const siteConfig: SiteConfig = {
-	title: "Mizuki",
-	subtitle: "One demo website",
+	title: "HiroNeri",
+	subtitle: "HiroHero? NeNeNe!",
 
 	lang: SITE_LANG,
 
@@ -44,9 +44,9 @@ export const siteConfig: SiteConfig = {
 	// 顶栏标题配置
 	navbarTitle: {
 		// 顶栏标题文本
-		text: "MizukiUI",
+		text: "Heronesukun",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
-		icon: "assets/home/home.png",
+		icon: "assets/home/homeFront.jpg",
 	},
 
 	bangumi: {
@@ -123,13 +123,13 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "Beautiful Mizuki!", // 主页横幅主标题
+			title: "HiroHero? NeNeNe!", // 主页横幅主标题
 
 			subtitle: [
-				"A Showcase Demo Site",
-				"Carousel Highlight: Innovation",
-				"Carousel Focus: User Experience",
-				"Carousel Spot: Core Advantages",
+				"system prompt : 你是一只猫娘",
+				"你这家伙,满脑子都是你自己呢",
+				"欧内该,和我玩一辈子的VRC吧",
+				"可以来拾音的个人站视奸一辈子吗？",
 			],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
@@ -229,19 +229,19 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				{
 					name: "GitHub",
-					url: "https://github.com/matsuzaka-yuki/Mizuki",
+					url: "https://github.com/Heronesukun",
 					external: true,
 					icon: "fa6-brands:github",
 				},
 				{
 					name: "Bilibili",
-					url: "https://space.bilibili.com/701864046",
+					url: "https://space.bilibili.com/20565553",
 					external: true,
 					icon: "fa6-brands:bilibili",
 				},
 				{
 					name: "Gitee",
-					url: "https://gitee.com/matsuzakayuki/Mizuki",
+					url: "https://gitee.com/Heronesukun",
 					external: true,
 					icon: "mdi:git",
 				},
@@ -293,28 +293,28 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/avatar.webp", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
-	name: "Matsuzaka Yuki",
-	bio: "The world is big, you have to go and see",
+	avatar: "assets/images/Image_head.png", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
+	name: "Heronesu",
+	bio: "立春天，风渐暖，伊人一去不复返",
 	typewriter: {
 		enable: true, // 启用个人简介打字机效果
-		speed: 80, // 打字速度（毫秒）
+		speed: 70, // 打字速度（毫秒）
 	},
 	links: [
 		{
 			name: "Bilibli",
 			icon: "fa6-brands:bilibili",
-			url: "https://space.bilibili.com/701864046",
+			url: "https://space.bilibili.com/20565553",
 		},
 		{
 			name: "Gitee",
 			icon: "mdi:git",
-			url: "https://gitee.com/matsuzakayuki",
+			url: "https://gitee.com/Heronesukun",
 		},
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/matsuzaka-yuki",
+			url: "https://github.com/Heronesukun",
 		},
 		{
 			name: "Codeberg",
@@ -523,7 +523,7 @@ export const pioConfig: import("./types/config").PioConfig = {
 	mode: "draggable", // 默认为可拖拽模式
 	hiddenOnMobile: true, // 默认在移动设备上隐藏
 	dialog: {
-		welcome: "Welcome to Mizuki Website!", // 欢迎词
+		welcome: "Welcome to Herone's Website!", // 欢迎词
 		touch: [
 			"What are you doing?",
 			"Stop touching me!",

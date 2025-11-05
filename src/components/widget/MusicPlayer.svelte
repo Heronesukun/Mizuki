@@ -90,6 +90,14 @@ const localPlaylist = [
 		url: "assets/music/url/cl.mp3",
 		duration: 200,
 	},
+	{
+		id: 4,
+		title: "僕が死のうと思ったのは",
+		artist: "中岛美嘉",
+		cover: "assets/music/cover/wcjyxylbl.jpg",
+		url: "assets/music/url/wcjyxylbl.mp3",
+		duration: 240,
+	},
 ];
 
 async function fetchMetingPlaylist() {
