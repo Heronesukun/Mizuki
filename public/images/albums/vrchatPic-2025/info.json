@@ -1,0 +1,26 @@
+{
+	"mode": "external",
+	"title": "11月vrc照片集",
+	"description": "来自VRC各地的见闻",
+	"date": "2024-08-20",
+	"location": "日本",
+	"tags": ["风景", "摄影", "祭典"],
+	"layout": "masonry",
+	"columns": 3,
+	"cover": "http://heronesukun.top/vrchatPic/zhangli.png",
+	"photos": [
+		{
+			"id": "张力",
+			"src": "http://heronesukun.top/vrchatPic/zhangli.png",
+			"thumbnail": "http://heronesukun.top/vrchatPic/zhangli.png",
+			"alt": "张力",
+			"title": "《张力》",
+			"description": "吃我一板章鱼烧",
+			"tags": ["风景", "祭典", "摄影"],
+			"date": "2025-11-06",
+			"location": "平行世界的夏日祭",
+			"width": 3840,
+			"height": 2160
+		}
+	]
+}

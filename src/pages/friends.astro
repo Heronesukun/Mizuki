@@ -1,7 +1,7 @@
 ---
-import { siteConfig } from "../config";
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
+import { siteConfig } from "../config";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
@@ -36,18 +36,23 @@ const items = [
 	},
 	{
 		title: "Cyber Neko",
-		imgurl:
-			"https://avatars.githubusercontent.com/u/51205428?v=4",
+		imgurl: "https://avatars.githubusercontent.com/u/51205428?v=4",
 		desc: "可爱赛博猫猫",
 		siteurl: "https://github.com/byteTravell3r",
 		tags: ["cyberNeko"],
 	},
 	{
 		title: "123SummerTime",
-		imgurl:
-			"https://123summertime.top/images/static/avatar.jpg",
+		imgurl: "https://123summertime.top/images/static/avatar.jpg",
 		desc: "夏神",
 		siteurl: "https://123summertime.top",
+		tags: ["vrchatFriend"],
+	},
+	{
+		title: "粟悟饭与龟波功",
+		imgurl: "https://ooo.0x0.ooo/2025/03/30/O0OCxU.jpg",
+		desc: "有着绝绝牛牛子的伪人",
+		siteurl: "https://www.jjnnz.sbs/",
 		tags: ["vrchatFriend"],
 	},
 ];
