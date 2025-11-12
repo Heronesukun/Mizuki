@@ -1,4 +1,6 @@
 
+这个网站是通过Astro框架的Mizuki主题基础上建立的，以下所有均为MIZUKI相关简介
+
 This website is built with the **Astro** framework using the [Mizuki](https://github.com/matsuzaka-yuki/mizuki) theme.
 
 ::github{repo="matsuzaka-yuki/Mizuki"}
