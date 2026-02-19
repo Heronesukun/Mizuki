@@ -249,13 +249,13 @@ export const navBarConfig: NavBarConfig = {
 					name: "GitHub",
 					url: "https://github.com/Heronesukun",
 					external: true,
-					icon: "fa6-brands:github",
+					icon: "fa7-brands:github",
 				},
 				{
 					name: "Bilibili",
 					url: "https://space.bilibili.com/20565553",
 					external: true,
-					icon: "fa6-brands:bilibili",
+					icon: "fa7-brands:bilibili",
 				},
 				{
 					name: "Gitee",
@@ -346,7 +346,7 @@ export const profileConfig: ProfileConfig = {
 	links: [
 		{
 			name: "Bilibli",
-			icon: "fa6-brands:bilibili",
+			icon: "fa7-brands:bilibili",
 			url: "https://space.bilibili.com/20565553",
 		},
 		{
@@ -356,7 +356,7 @@ export const profileConfig: ProfileConfig = {
 		},
 		{
 			name: "GitHub",
-			icon: "fa6-brands:github",
+			icon: "fa7-brands:github",
 			url: "https://github.com/Heronesukun",
 		},
 		{
@@ -366,7 +366,7 @@ export const profileConfig: ProfileConfig = {
 		},
 		{
 			name: "Discord",
-			icon: "fa6-brands:discord",
+			icon: "fa7-brands:discord",
 			url: "https://discord.gg/MqW6TcQtVM",
 		},
 	],
@@ -460,22 +460,13 @@ export const footerConfig: FooterConfig = {
  * sidebar: 控制组件在左侧栏和右侧栏,注意移动端是不会显示右侧栏的内容(unilateral模式除外),在设置了right属性的时候请确保你使用双侧(both)布局
  */
 export const sidebarLayoutConfig: SidebarLayoutConfig = {
-	// 侧边栏位置：单侧(unilateral)或双侧(both)
-	position: "both",
-
-	// 侧边栏组件配置列表
-	components: [
+	// 侧边栏组件属性配置列表
+	properties: [
 		{
 			// 组件类型：用户资料组件
 			type: "profile",
-			// 是否启用该组件
-			enable: true,
-			// 组件显示顺序（数字越小越靠前）
-			order: 1,
 			// 组件位置："top" 表示固定在顶部
 			position: "top",
-			// 所在侧边栏
-			sidebar: "left",
 			// CSS 类名，用于应用样式和动画
 			class: "onload-animation",
 			// 动画延迟时间（毫秒），用于错开动画效果
@@ -484,14 +475,8 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 		{
 			// 组件类型：公告组件
 			type: "announcement",
-			// 是否启用该组件（现在通过统一配置控制）
-			enable: true,
-			// 组件显示顺序
-			order: 2,
 			// 组件位置："top" 表示固定在顶部
 			position: "top",
-			// 所在侧边栏
-			sidebar: "left",
 			// CSS 类名
 			class: "onload-animation",
 			// 动画延迟时间
@@ -500,14 +485,8 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 		{
 			// 组件类型：分类组件
 			type: "categories",
-			// 是否启用该组件
-			enable: true,
-			// 组件显示顺序
-			order: 3,
 			// 组件位置："sticky" 表示粘性定位，可滚动
 			position: "sticky",
-			// 所在侧边栏
-			sidebar: "left",
 			// CSS 类名
 			class: "onload-animation",
 			// 动画延迟时间
@@ -521,14 +500,8 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 		{
 			// 组件类型：标签组件
 			type: "tags",
-			// 是否启用该组件
-			enable: true,
-			// 组件显示顺序
-			order: 5,
 			// 组件位置："sticky" 表示粘性定位
-			position: "top",
-			// 所在侧边栏
-			sidebar: "left",
+			position: "sticky",
 			// CSS 类名
 			class: "onload-animation",
 			// 动画延迟时间
@@ -542,14 +515,8 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 		{
 			// 组件类型：站点统计组件
 			type: "site-stats",
-			// 是否启用该组件
-			enable: true,
-			// 组件显示顺序
-			order: 5,
 			// 组件位置
-			position: "top",
-			// 所在侧边栏
-			sidebar: "right",
+			position: "sticky",
 			// CSS 类名
 			class: "onload-animation",
 			// 动画延迟时间
@@ -558,20 +525,21 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 		{
 			// 组件类型：日历组件(移动端不显示)
 			type: "calendar",
-			// 是否启用该组件
-			enable: true,
-			// 组件显示顺序
-			order: 6,
 			// 组件位置
-			position: "top",
-			// 所在侧边栏
-			sidebar: "right",
+			position: "sticky",
 			// CSS 类名
 			class: "onload-animation",
 			// 动画延迟时间
 			animationDelay: 250,
 		},
 	],
+
+	// 侧栏组件布局配置
+	components: {
+		left: ["profile", "announcement", "categories", "tags"],
+		right: ["site-stats", "calendar"],
+		drawer: ["profile", "announcement", "categories", "tags"],
+	},
 
 	// 默认动画配置
 	defaultAnimation: {
@@ -591,14 +559,13 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			mobile: 768,
 			// 平板端断点：屏幕宽度小于1280px
 			tablet: 1280,
-			// 桌面端断点：屏幕宽度小于1280px
+			// 桌面端断点：屏幕宽度大于等于1280px
 			desktop: 1280,
 		},
 		// 不同设备的布局模式
-		//hidden:不显示侧边栏(桌面端)   drawer:抽屉模式(移动端不显示)   sidebar:显示侧边栏
 		layout: {
 			// 移动端：抽屉模式
-			mobile: "sidebar",
+			mobile: "drawer",
 			// 平板端：显示侧边栏
 			tablet: "sidebar",
 			// 桌面端：显示侧边栏
