@@ -178,6 +178,36 @@ r'file=([a-zA-Z0-9{}-]+\.(jpg|png|gif))'
 
 **解决**: 使用 `sudo docker exec napcat cat <path>` 读取文件
 
+### 坑五：路径大小写不匹配
+
+**症状**: NapCat API 返回路径文件名是大写，实际文件是小写
+
+**原因**: 文件系统区分大小写
+
+**解决**:
+```python
+# 转换路径为小写
+path_parts = local_path.rsplit('/', 1)
+if len(path_parts) == 2:
+    dir_path, filename = path_parts
+    local_path = f"{dir_path}/{filename.lower()}"
+```
+
+### 坑六：MiniMax API 返回格式错误
+
+**症状**: 图片识别结果为空
+
+**原因**: API 返回 `{"content": "..."}` 而非标准的 `{"choices": [{"message": {"content": "..."}}]}`
+
+**解决**:
+```python
+# 错误
+return api_result.get("choices", [{}])[0].get("message", {}).get("content", "")
+
+# 正确
+return api_result.get("content", "")
+```
+
 ## 核心代码 (cat_meme.py)
 
 ```python
@@ -212,24 +242,29 @@ async def handle_cat_meme(event: MessageEvent, bot: Bot = None):
 
 ## 未来计划 🚧
 
-### 图片识别功能 (进行中)
+### 图片识别功能 ✅ 已完成
 
-**当前状态**: 🔧 调试中
+**当前状态**: ✅ 正常运行
 
-**问题描述**:
-- NapCat 返回的图片路径是容器内部路径
-- NoneBot 宿主机无法直接访问
-- Docker 权限问题导致图片读取失败
+**修复的问题**:
+1. **路径大小写问题**: NapCat API 返回路径文件名是大写（如 `33D0A7CE...jpg`），但实际文件是小写（如 `33d0a7ce...jpg`）
+   - 解决：在获取路径后转换为小写
+2. **API 返回格式错误**: MiniMax VLM 返回格式是 `{"content": "..."}`，而非标准的 `{"choices": [{"message": {"content": "..."}}]}`
+   - 解决：直接读取 `content` 字段
+3. **表情包识别优化**: 区分普通图片（触发 AI 识别）和表情包（提取文字描述）
+   - VIP 表情包：有 `emoji_id` 字段
+   - 普通表情包：`sub_type=1`
+   - 普通图片：`sub_type=0`
 
-**待解决**:
-1. 解决 Docker 文件读取权限问题
-2. 优化图片识别流程，减少延迟
-3. 支持更多图片格式 (GIF 动画、表情包等)
+**已支持**:
+- 普通图片 JPEG/PNG：触发 MiniMax VLM 识别
+- VIP 表情包：提取 `[表情包: xxx]` 文字
+- 普通表情包：提取 `[表情包内容: xxx]` 文字
 
-**可能的解决方案**:
-- 配置 NapCat 支持 HTTP API 获取图片
-- 使用 Docker 卷挂载共享图片目录
-- 切换到支持图片上传的 NoneBot 适配器
+**优化方向**:
+- [ ] 语音识别 (QQ 语音消息 → Whisper)
+- [ ] 群聊关键词提醒
+- [ ] 多 AI 模型切换
 
 ### 功能扩展
 
@@ -244,14 +279,12 @@ async def handle_cat_meme(event: MessageEvent, bot: Bot = None):
 ✅ **已完成**:
 - NapCat Docker + NoneBot 部署
 - DeepSeek AI 智能对话接入
-- MiniMax VLM 图片识别 API 测试
+- MiniMax VLM 图片识别功能（已修复路径和 API 格式问题）
 - 二次元猫娘角色扮演系统
 - 独立会话管理
+- 表情包 vs 图片区分处理
 
-🔧 **进行中**:
-- QQ 图片自动识别功能（Docker 文件读取问题待解决）
-
-这是一次有趣的 AI + QQ 机器人实践！虽然图片识别功能还在调试中，但整体框架已经跑通，后续优化空间很大。
+这是一次有趣的 AI + QQ 机器人实践！图片识别功能现已正常运行，后续可以继续扩展更多功能。
 
 ---
 
