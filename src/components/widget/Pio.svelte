@@ -117,7 +117,7 @@ async function initCubism() {
 		app.stage.addChild(model);
 		
 		// 设置模型 - 调整大小
-		const scale = 0.15;
+		const scale = 0.11;
 		model.scale.set(scale);
 		model.anchor.set(0.5, 0.5);
 		model.position.set(
