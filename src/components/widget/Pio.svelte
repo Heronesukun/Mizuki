@@ -2,6 +2,19 @@
 import { onDestroy, onMount } from "svelte";
 import { pioConfig } from "@/config";
 
+// 判断是否为 Cubism 3/4/5 模型
+const isCubismModel = (modelPath) => {
+	return modelPath && (modelPath.endsWith('.model3.json') || modelPath.endsWith('.model.json'));
+};
+
+// 获取主要模型路径
+const mainModel = pioConfig.models && pioConfig.models.length > 0 
+	? pioConfig.models[0] 
+	: "/pio/models/pio/model.json";
+
+// 判断是否使用 Cubism 3/4/5
+const useCubism = isCubismModel(mainModel);
+
 // 将配置转换为 Pio 插件需要的格式
 const pioOptions = {
 	mode: pioConfig.mode,
@@ -10,23 +23,22 @@ const pioOptions = {
 	model: pioConfig.models || ["/pio/models/pio/model.json"],
 };
 
-// 全局Pio实例引用
+// 全局变量
 let pioInstance = null;
+let pixiApp = null;
+let live2dModel = null;
 let pioInitialized = false;
 let pioContainer;
 let pioCanvas;
 
-// 样式已通过 Layout.astro 静态引入，无需动态加载
-
-// 等待 DOM 加载完成后再初始化 Pio
+// 初始化旧版 Pio (Cubism 2)
 function initPio() {
 	if (typeof window !== "undefined" && typeof Paul_Pio !== "undefined") {
 		try {
-			// 确保DOM元素存在
 			if (pioContainer && pioCanvas && !pioInitialized) {
 				pioInstance = new Paul_Pio(pioOptions);
 				pioInitialized = true;
-				console.log("Pio initialized successfully (Svelte)");
+				console.log("Pio initialized successfully (Cubism 2)");
 			} else if (!pioContainer || !pioCanvas) {
 				console.warn("Pio DOM elements not found, retrying...");
 				setTimeout(initPio, 100);
@@ -35,20 +47,94 @@ function initPio() {
 			console.error("Pio initialization error:", e);
 		}
 	} else {
-		// 如果 Paul_Pio 还未定义，稍后再试
 		setTimeout(initPio, 100);
 	}
 }
 
-// 样式已通过 Layout.astro 静态引入，无需动态加载函数
+// 获取 Live2DModel 类
+function getLive2DModelClass() {
+	if (typeof window !== 'undefined') {
+		// 方式1: PIXI.live2d.Live2DModel
+		if (window.PIXI && window.PIXI.live2d && window.PIXI.live2d.Live2DModel) {
+			return window.PIXI.live2d.Live2DModel;
+		}
+		// 方式2: window.Live2DModel
+		if (window.Live2DModel) {
+			return window.Live2DModel;
+		}
+	}
+	return null;
+}
 
-// 加载必要的脚本
+// 初始化 Cubism 3/4/5 模型
+async function initCubism() {
+	if (typeof window === "undefined") return;
+	
+	try {
+		if (!pioCanvas) {
+			console.warn("Canvas not found, retrying...");
+			setTimeout(initCubism, 100);
+			return;
+		}
+
+		const modelPath = mainModel;
+		console.log("Loading Cubism model:", modelPath);
+		
+		// 获取 Live2DModel 类
+		const Live2DModel = getLive2DModelClass();
+		console.log("Live2DModel class found:", !!Live2DModel);
+		
+		if (!Live2DModel) {
+			console.error("Live2DModel not found!");
+			throw new Error("Live2DModel class not found");
+		}
+
+		// 加载模型
+		const model = await Live2DModel.from(modelPath, {
+			autoUpdate: true,
+			autoInteract: true,
+		});
+		
+		live2dModel = model;
+		
+		// 创建 PixiJS 应用
+		const app = new PIXI.Application();
+		await app.init({
+			width: pioConfig.width || 320,
+			height: pioConfig.height || 350,
+			backgroundAlpha: 0,
+			canvas: pioCanvas,
+			resizeTo: pioCanvas,
+		});
+		
+		pixiApp = app;
+		
+		// 添加模型到舞台
+		app.stage.addChild(model);
+		
+		// 设置模型
+		const scale = 0.4;
+		model.scale.set(scale);
+		model.anchor.set(0.5, 0.5);
+		model.position.set(
+			(pioConfig.width || 320) / 2,
+			(pioConfig.height || 350) / 2
+		);
+		
+		pioInitialized = true;
+		console.log("Cubism model initialized successfully!");
+		
+	} catch (e) {
+		console.error("Cubism initialization error:", e);
+		console.log("Falling back to original Pio...");
+		loadPioAssets();
+	}
+}
+
+// 加载旧版 Cubism 2
 function loadPioAssets() {
 	if (typeof window === "undefined") return;
 
-	// 样式已通过 Layout.astro 静态引入
-
-	// 加载JS脚本
 	const loadScript = (src, id) => {
 		return new Promise((resolve, reject) => {
 			if (document.querySelector(`#${id}`)) {
@@ -64,11 +150,9 @@ function loadPioAssets() {
 		});
 	};
 
-	// 按顺序加载脚本
 	loadScript("/pio/static/l2d.js", "pio-l2d-script")
 		.then(() => loadScript("/pio/static/pio.js", "pio-main-script"))
 		.then(() => {
-			// 脚本加载完成后初始化
 			setTimeout(initPio, 100);
 		})
 		.catch((error) => {
@@ -76,24 +160,80 @@ function loadPioAssets() {
 		});
 }
 
-// 样式已通过 Layout.astro 静态引入，无需页面切换监听
+// 加载 Cubism 3/4/5 所需脚本
+function loadCubismAssets() {
+	if (typeof window === "undefined") return;
+
+	const loadScript = (src, id) => {
+		return new Promise((resolve, reject) => {
+			if (document.querySelector(`#${id}`)) {
+				console.log(`Script ${id} already loaded`);
+				resolve();
+				return;
+			}
+			const script = document.createElement("script");
+			script.id = id;
+			script.src = src;
+			script.onload = () => {
+				console.log(`Loaded: ${id}`);
+				resolve();
+			};
+			script.onerror = (e) => {
+				console.error(`Failed to load: ${id}`, e);
+				reject(e);
+			};
+			document.head.appendChild(script);
+		});
+	};
+
+	// 使用官方 Live2D Cubism 5 Core
+	loadScript("/pio/static/pixi.min.js", "pixi-script")
+		.then(() => {
+			console.log("PixiJS loaded, version:", PIXI?.VERSION);
+			// 加载 Cubism 5 Core (从官方源)
+			return loadScript("/pio/static/live2dcubismcore.min.js", "cubism-core-script");
+		})
+		.then(() => {
+			console.log("Cubism Core loaded");
+			// 加载 l2d.js (Cubism 2 兼容层)
+			return loadScript("/pio/static/l2d.js", "live2d-script");
+		})
+		.then(() => {
+			console.log("Live2D loaded");
+			// 加载 pixi-live2d-display
+			return loadScript("/pio/static/pixi-live2d.min.js", "pixi-live2d-script");
+		})
+		.then(() => {
+			console.log("All Cubism assets loaded, initializing...");
+			setTimeout(initCubism, 500);
+		})
+		.catch((error) => {
+			console.error("Failed to load Cubism scripts:", error);
+			loadPioAssets();
+		});
+}
 
 onMount(() => {
 	if (!pioConfig.enable) return;
 
-	// 如果配置了手机端隐藏，且当前屏幕宽度小于 1280px (平板/手机)，则直接终止，不加载脚本
-    if (pioConfig.hiddenOnMobile && window.matchMedia("(max-width: 1280px)").matches) {
+	if (pioConfig.hiddenOnMobile && window.matchMedia("(max-width: 1280px)").matches) {
         return;
     }
 
-	// 加载资源并初始化
-	loadPioAssets();
+	if (useCubism) {
+		console.log("Using Cubism mode (3/4/5)");
+		loadCubismAssets();
+	} else {
+		console.log("Using Cubism 2 mode");
+		loadPioAssets();
+	}
 });
 
 onDestroy(() => {
-	// Svelte 组件销毁时不需要清理 Pio 实例
-	// 因为我们希望它在页面切换时保持状态
-	console.log("Pio Svelte component destroyed (keeping instance alive)");
+	if (pixiApp) {
+		pixiApp.destroy(true);
+	}
+	console.log("Pio Svelte component destroyed");
 });
 </script>
 
@@ -103,12 +243,11 @@ onDestroy(() => {
     <canvas 
       id="pio" 
       bind:this={pioCanvas}
-      width={pioConfig.width || 280} 
-      height={pioConfig.height || 250}
+      width={pioConfig.width || (useCubism ? 320 : 280)} 
+      height={pioConfig.height || (useCubism ? 350 : 250)}
     ></canvas>
   </div>
 {/if}
 
 <style>
-  /* Pio 相关样式将通过外部CSS文件加载 */
 </style>
