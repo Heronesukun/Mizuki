@@ -116,7 +116,7 @@ async function initCubism() {
 		// 添加模型到舞台
 		app.stage.addChild(model);
 		
-		// 设置模型 - 调整大小
+		// 设置模型
 		const scale = 0.11;
 		model.scale.set(scale);
 		model.anchor.set(0.5, 0.5);
@@ -125,41 +125,55 @@ async function initCubism() {
 			(pioConfig.height || 350) / 2 + 30
 		);
 		
-		// 启用交互 - 点击和拖动
-		model.interactive = true;
-		model.buttonMode = true;
-		
-		// 点击事件
-		model.on('pointertap', (event) => {
-			console.log('Model clicked!');
-			window.dispatchEvent(new CustomEvent('live2d:click'));
-		});
-		
-		// 拖动事件
+		// 拖动整个画布
 		let isDragging = false;
-		let dragOffset = { x: 0, y: 0 };
+		let startX, startY, initialLeft, initialTop;
+		
+		pioCanvas.style.cursor = 'grab';
 		
 		pioCanvas.addEventListener('pointerdown', (e) => {
 			isDragging = true;
-			dragOffset.x = e.clientX - model.position.x;
-			dragOffset.y = e.clientY - model.position.y;
-			console.log('Drag started');
+			pioCanvas.style.cursor = 'grabbing';
+			startX = e.clientX;
+			startY = e.clientY;
+			
+			const container = pioCanvas.parentElement;
+			const rect = container.style;
+			initialLeft = parseInt(rect.left) || 0;
+			initialTop = parseInt(rect.top) || 0;
+			console.log('Drag started, initial position:', initialLeft, initialTop);
 		});
 		
 		pioCanvas.addEventListener('pointermove', (e) => {
-			if (isDragging) {
-				model.position.x = e.clientX - dragOffset.x;
-				model.position.y = e.clientY - dragOffset.y;
-			}
+			if (!isDragging) return;
+			
+			const deltaX = e.clientX - startX;
+			const deltaY = e.clientY - startY;
+			
+			const container = pioCanvas.parentElement;
+			container.style.position = 'fixed';
+			container.style.left = (initialLeft + deltaX) + 'px';
+			container.style.top = (initialTop + deltaY) + 'px';
+			container.style.right = 'auto';
+			container.style.bottom = 'auto';
 		});
 		
 		pioCanvas.addEventListener('pointerup', () => {
 			isDragging = false;
+			pioCanvas.style.cursor = 'grab';
 			console.log('Drag ended');
 		});
 		
 		pioCanvas.addEventListener('pointerleave', () => {
 			isDragging = false;
+			pioCanvas.style.cursor = 'grab';
+		});
+		
+		// 点击事件
+		model.interactive = true;
+		model.on('pointertap', () => {
+			console.log('Model clicked!');
+			window.dispatchEvent(new CustomEvent('live2d:click'));
 		});
 		
 		pioInitialized = true;
