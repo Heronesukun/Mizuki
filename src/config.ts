@@ -597,8 +597,8 @@ export const pioConfig: import("./types/config").PioConfig = {
 	enable: true, // 启用看板娘
 	models: ["/pio/models/chino/智乃.model3.json"], // 默认模型路径 (Cubism 5)
 	position: "right", // 默认位置在右侧
-	width: 320, // 默认宽度 (智乃模型较宽)
-	height: 350, // 默认高度 (智乃模型较高)
+	width: 200, // 默认宽度 (智乃模型较宽)
+	height: 280, // 默认高度 (智乃模型较高)
 	mode: "draggable", // 默认为可拖拽模式
 	hiddenOnMobile: true, // 默认在移动设备上隐藏
 	dialog: {
