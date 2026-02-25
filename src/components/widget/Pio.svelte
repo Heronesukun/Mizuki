@@ -86,24 +86,28 @@ async function initCubism() {
 		
 		if (!Live2DModel) {
 			console.error("Live2DModel not found!");
+			console.log("PIXI:", typeof PIXI);
+			console.log("PIXI.live2d:", typeof (PIXI && PIXI.live2d));
+			console.log("window.Live2DModel:", typeof window.Live2DModel);
 			throw new Error("Live2DModel class not found");
 		}
 
 		// 加载模型
+		console.log("Loading model from:", modelPath);
 		const model = await Live2DModel.from(modelPath, {
 			autoUpdate: true,
 			autoInteract: true,
 		});
 		
 		live2dModel = model;
+		console.log("Model loaded:", model);
 		
-		// 创建 PixiJS 应用
-		const app = new PIXI.Application();
-		await app.init({
+		// 创建 PixiJS 应用 (PixiJS v7 方式)
+		const app = new PIXI.Application({
 			width: pioConfig.width || 320,
 			height: pioConfig.height || 350,
 			backgroundAlpha: 0,
-			canvas: pioCanvas,
+			view: pioCanvas,
 			resizeTo: pioCanvas,
 		});
 		
