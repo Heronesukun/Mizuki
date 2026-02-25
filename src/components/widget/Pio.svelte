@@ -125,6 +125,43 @@ async function initCubism() {
 			(pioConfig.height || 350) / 2 + 30
 		);
 		
+		// 启用交互 - 点击和拖动
+		model.interactive = true;
+		model.buttonMode = true;
+		
+		// 点击事件
+		model.on('pointertap', (event) => {
+			console.log('Model clicked!');
+			window.dispatchEvent(new CustomEvent('live2d:click'));
+		});
+		
+		// 拖动事件
+		let isDragging = false;
+		let dragOffset = { x: 0, y: 0 };
+		
+		pioCanvas.addEventListener('pointerdown', (e) => {
+			isDragging = true;
+			dragOffset.x = e.clientX - model.position.x;
+			dragOffset.y = e.clientY - model.position.y;
+			console.log('Drag started');
+		});
+		
+		pioCanvas.addEventListener('pointermove', (e) => {
+			if (isDragging) {
+				model.position.x = e.clientX - dragOffset.x;
+				model.position.y = e.clientY - dragOffset.y;
+			}
+		});
+		
+		pioCanvas.addEventListener('pointerup', () => {
+			isDragging = false;
+			console.log('Drag ended');
+		});
+		
+		pioCanvas.addEventListener('pointerleave', () => {
+			isDragging = false;
+		});
+		
 		pioInitialized = true;
 		console.log("Cubism model initialized successfully!");
 		
