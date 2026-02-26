@@ -15,7 +15,6 @@ const BANNER_HEIGHT_EXTEND = 30;
 const BANNER_HEIGHT_HOME = BANNER_HEIGHT + BANNER_HEIGHT_EXTEND;
 
 import {
-	live2dConfig,
 	DARK_MODE,
 	DEFAULT_THEME,
 	LIGHT_MODE,
@@ -404,7 +403,7 @@ if (siteConfig.font) {
 		<!-- Pio 看板娘组件 - 仅在启用时加载 -->
 		{pioConfig.enable && <Pio client:idle />}
 
-		{live2dConfig.enable && <script src="/live2d/dist/autoload.js"></script>}
+		{live2dConfig.enable && <script is:inline src="/live2d/dist/autoload.js"></script>}
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
@@ -464,8 +463,6 @@ if (siteConfig.font) {
 <script>
 	// import { animationManager } from '../utils/animation-utils';
 	import "overlayscrollbars/overlayscrollbars.css";
-	// import {
-	live2dConfig,
 	//  OverlayScrollbars,
 	//  // ScrollbarsHidingPlugin,
 	//  // SizeObserverPlugin,
@@ -474,7 +471,6 @@ if (siteConfig.font) {
 	// import {getHue, getStoredTheme, setHue, setTheme} from "../utils/setting-utils";
 	import { pathsEqual, url } from "../utils/url-utils";
 	import {
-	live2dConfig,
 		// BANNER_HEIGHT,
 		// BANNER_HEIGHT_HOME,
 		// BANNER_HEIGHT_EXTEND,
