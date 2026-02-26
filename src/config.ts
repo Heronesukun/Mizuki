@@ -594,7 +594,7 @@ export const sakuraConfig: SakuraConfig = {
 
 // Pio 看板娘配置
 export const pioConfig: import("./types/config").PioConfig = {
-	enable: true, // 启用看板娘
+	enable: false, // 启用看板娘
 	models: ["/pio/models/pio/model.json"], // 默认模型路径
 	position: "left", // 默认位置在右侧
 	width: 280, // 默认宽度
@@ -618,6 +618,11 @@ export const pioConfig: import("./types/config").PioConfig = {
 	},
 };
 
+// Live2D 看板娘配置 (live2d-widget)
+export const live2dConfig: import("./types/config").Live2DConfig = {
+	enable: true, // 启用 live2d-widget
+};
+
 // 导出所有配置的统一接口
 export const widgetConfigs = {
 	profile: profileConfig,
@@ -627,6 +632,7 @@ export const widgetConfigs = {
 	sakura: sakuraConfig,
 	fullscreenWallpaper: fullscreenWallpaperConfig,
 	pio: pioConfig, // 添加 pio 配置
+	live2d: live2dConfig, // 添加 live2d-widget 配置
 	share: shareConfig, // 添加分享配置
 } as const;
 

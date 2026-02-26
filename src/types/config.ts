@@ -456,6 +456,13 @@ export type PioConfig = {
 };
 
 /**
+ * Live2D 看板娘配置 (live2d-widget)
+ */
+export type Live2DConfig = {
+	enable: boolean; // 是否启用 live2d-widget
+};
+
+/**
  * 分享组件配置
  */
 export type ShareConfig = {
