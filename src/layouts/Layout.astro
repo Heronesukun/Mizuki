@@ -403,7 +403,7 @@ if (siteConfig.font) {
 		<!-- Pio 看板娘组件 - 仅在启用时加载 -->
 		{pioConfig.enable && <Pio client:idle />}
 
-		{live2dConfig.enable && <script is:inline src="/live2d/dist/autoload.js"></script>}
+		{live2dConfig.enable && <script is:inline src="/live2d/autoload.js"></script>}
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
