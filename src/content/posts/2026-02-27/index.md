@@ -1,20 +1,21 @@
 ---
 title: Mizuki 项目集成 Live2D Cubism 5 看板娘指南
+published: 2026-02-27
+pinned: false
+description: 通过集成Live2D-widget项目，实现在mizuki中添加Cubism 5的live2d模型形象
+tags: [Live2D, Cubism, Live2D-widget]
+author: 拾音
+draft: false
+category: 技术
 date: 2026-02-27
-tags:
-  - Live2D
-  - Cubism
-  - Mizuki
-  - 技术教程
-categories:
-  - 技术教程
+image: "https://github.com/Heronesukun/image-hosting/blob/master/Image_1763022988392.png"
 ---
 
 # Mizuki 项目集成 Live2D Cubism 5 看板娘指南
 
 ## 前言
 
-之前 Mizuki 项目中使用的是基于 [Paul_Pio](https://github.com/Heronesukun/Paul-Pio) 的 Live2D 看板娘方案，该方案仅支持 Cubism 2 版本的模型。随着 Live2D 技术的迭代，越来越多的模型采用了 Cubism 4/5 版本，这促使我探索将 Cubism 5 支持集成到 Mizuki 项目中的方案。
+之前 Mizuki 项目中使用的是基于 [Paul_Pio](https://github.com/Dreamer-Paul/Pio) 的 Live2D 看板娘方案，该方案仅支持 Cubism 2 版本的模型。随着 Live2D 技术的迭代，越来越多的模型采用了 Cubism 4/5 版本，这促使我探索将 Cubism 5 支持集成到 Mizuki 项目中的方案。
 
 本文将详细介绍如何在 Mizuki 项目中集成 [live2d-widget](https://github.com/stevenjoezhang/live2d-widget) 来支持 Cubism 5 版本的 Live2D 模型。
 
@@ -60,7 +61,9 @@ categories:
 - `expressions/` - 表情文件
 - `motions/` - 动作文件
 
-本文使用的模型源自 [紫乃晶夏](https://space.bilibili.com/506087973)（B站），已获得授权使用。
+本文使用的模型重制版智乃源自 [紫乃晶夏](https://space.bilibili.com/506087973)（B站）
+香风智乃源自[Ero鸭_Live2d](https://space.bilibili.com/208813669)（B站），
+⚠️ **版权声明**：本文使用的 Live2D 模型仅供个人学习交流使用，模型版权归原作者所有。如需商用，请联系原作者获得授权。
 
 ## 集成步骤
 
@@ -214,6 +217,7 @@ Astro 会自动将 `public/live2d/` 目录复制到 `dist/live2d/`。
 - [live2d-widget GitHub](https://github.com/stevenjoezhang/live2d-widget)
 - [Live2D Cubism SDK](https://www.live2d.com/zh-CHS/sdk/download/web/)
 - [紫乃晶夏 B站](https://space.bilibili.com/506087973)
+- [Ero鸭_Live2d](https://space.bilibili.com/208813669)
 
 ## 总结
 
