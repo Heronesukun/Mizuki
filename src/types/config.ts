@@ -460,6 +460,26 @@ export type PioConfig = {
  */
 export type Live2DConfig = {
 	enable: boolean; // 是否启用 live2d-widget
+	/**
+	 * Live2D 资源路径
+	 * @default '/live2d/'
+	 */
+	live2dPath?: string;
+	/**
+	 * 是否在移动端隐藏
+	 * @default true
+	 */
+	mobileHidden?: boolean;
+	/**
+	 * 看板娘位置
+	 * @default 'left'
+	 */
+	position?: 'left' | 'right';
+	/**
+	 * 看板娘底部边距
+	 * @default '0px'
+	 */
+	bottom?: string;
 };
 
 /**

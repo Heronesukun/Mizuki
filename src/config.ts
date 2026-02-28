@@ -621,6 +621,10 @@ export const pioConfig: import("./types/config").PioConfig = {
 // Live2D 看板娘配置 (live2d-widget)
 export const live2dConfig: import("./types/config").Live2DConfig = {
 	enable: true, // 启用 live2d-widget
+	live2dPath: "/live2d/", // Live2D 资源路径
+	mobileHidden: true, // 在移动端隐藏
+	position: "left", // 显示在左侧
+	bottom: "0px", // 底部边距
 };
 
 // 导出所有配置的统一接口

@@ -3,7 +3,7 @@ title: Mizuki 项目集成 Live2D Cubism 5 看板娘指南
 published: 2026-02-27
 pinned: false
 description: 通过集成Live2D-widget项目，实现在mizuki中添加Cubism 5的live2d模型形象
-tags: [Live2D, Cubism, Live2D-widget]
+tags: [Live2D, Cubism, Live2D-widget, 配置指南]
 author: 拾音
 draft: false
 category: 技术
@@ -12,6 +12,101 @@ image: "https://github.com/Heronesukun/image-hosting/blob/master/Image_176302298
 ---
 
 # Mizuki 项目集成 Live2D Cubism 5 看板娘指南
+
+## 配置文档
+
+> ⚠️ 配置文档位置：看板娘配置文件位于 `src/config.ts` 文件中的 `live2dConfig` 对象。
+
+### 基础配置
+
+```typescript
+// Live2D 看板娘配置 (live2d-widget)
+export const live2dConfig: import("./types/config").Live2DConfig = {
+	enable: true, // 启用 live2d-widget
+};
+```
+
+### autoload.js 配置项详解
+
+看板娘的主要配置文件为 `public/live2d/autoload.js`，可以通过修改 `initWidget()` 中的参数来定制行为：
+
+```javascript
+initWidget({
+  waifuPath: live2d_path + 'waifu-tips.json',  // 提示文本配置
+  cdnPath: '/live2d/',                          // CDN/资源路径
+  cubism2Path: live2d_path + 'live2d.min.js',  // Cubism 2 核心库
+  cubism5Path: live2d_path + 'CubismSdkForWeb-5-r.4/Core/live2dcubismcore.min.js',  // Cubism 5 核心库
+  tools: ['hitokoto', 'asteroids', 'switch-model', 'switch-texture', 'photo', 'info', 'quit'],  // 工具按钮
+  logLevel: 'warn',                              // 日志级别
+  drag: false,                                   // 是否可拖拽
+});
+```
+
+### 配置项说明
+
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `waifuPath` | string | 必填 | 提示文本JSON文件路径 |
+| `cdnPath` | string | 必填 | 模型和资源的基础路径 |
+| `cubism2Path` | string | 必填 | Cubism 2 核心库路径 |
+| `cubism5Path` | string | 必填 | Cubism 5 核心库路径 |
+| `tools` | array | 见上文 | 显示在看板娘旁的工具按钮 |
+| `logLevel` | string | 'warn' | 日志级别：'debug'/'info'/'warn'/'error' |
+| `drag` | boolean | false | 是否允许拖拽看板娘 |
+
+### 工具按钮说明
+
+| 按钮 | 功能 |
+|------|------|
+| `hitokoto` | 一言 API 随机语录 |
+| `asteroids` | 小行星游戏 |
+| `switch-model` | 切换模型 |
+| `switch-texture` | 切换贴图/服装 |
+| `photo` | 截图功能 |
+| `info` | 显示模型信息 |
+| `quit` | 关闭看板娘 |
+
+### 模型列表配置
+
+模型列表在 `public/live2d/model/model_list.json` 中配置：
+
+```json
+{
+  "models": [
+    "重置版智乃",
+    "香风智乃"
+  ],
+  "messages": [
+    "重置版智乃",
+    "香风智乃"
+  ]
+}
+```
+
+**配置说明：**
+- `models`：模型目录名称（对应 `public/live2d/model/` 下的子目录）
+- `messages`：切换模型时显示的文本（与 models 对应）
+
+### 提示文本配置
+
+提示文本在 `public/live2d/waifu-tips.json` 中配置，支持以下事件类型：
+
+```json
+{
+  "mouseover": [...],    // 鼠标悬停时显示
+  "click": [...],        // 点击时显示
+  "seasons": [...],      // 特定日期显示
+  "message": {
+    "default": [...],    // 默认消息
+    "hoverBody": [...],  // 鼠标悬停身体
+    "tapBody": [...],    // 点击身体
+    "console": [...],    // 打开控制台
+    "copy": [...]        // 复制文本
+  }
+}
+```
+
+---
 
 ## 前言
 

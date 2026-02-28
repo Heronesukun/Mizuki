@@ -403,7 +403,22 @@ if (siteConfig.font) {
 		<!-- Pio 看板娘组件 - 仅在启用时加载 -->
 		{pioConfig.enable && <Pio client:idle />}
 
-		{live2dConfig.enable && <script is:inline src="/live2d/autoload.js"></script>}
+		{live2dConfig.enable && (
+			<>
+				<script is:inline src="/live2d/autoload.js"></script>
+				{live2dConfig.mobileHidden && (
+					<script is:inline>
+						// 移动端隐藏 Live2D
+						if (window.innerWidth < 768) {
+							document.addEventListener('DOMContentLoaded', function() {
+								var waifu = document.getElementById('waifu');
+								if (waifu) waifu.style.display = 'none';
+							});
+						}
+					</script>
+				)}
+			</>
+		)}
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
