@@ -1,24 +1,20 @@
 #waifu-toggle {
 	background-color: #fa0;
 	border-radius: 5px;
-	bottom: 66px;
+	bottom: 70px;
 	cursor: pointer;
 	display: flex;
-	justify-content: flex-end;
-	left: 0;
-	margin-left: -100px;
+	justify-content: center;
+	left: 10px;
 	padding: 5px;
 	position: fixed;
-	transition: margin-left 1s;
-	width: 60px;
+	transition: bottom 0.3s;
+	width: 50px;
+	z-index: 10000;
 }
 
 #waifu-toggle.waifu-toggle-active {
-	margin-left: -50px;
-}
-
-#waifu-toggle.waifu-toggle-active:hover {
-	margin-left: -30px;
+	bottom: 370px;
 }
 
 #waifu-toggle svg {
@@ -27,12 +23,13 @@
 }
 
 #waifu {
-	bottom: -500px;
+	bottom: 0;
 	left: 0;
 	position: fixed;
 	transform: translateY(25px);
 	transition: transform .3s ease-in-out, bottom 3s ease-in-out;
-	z-index: 1;
+	width: 350px;
+	z-index: 9999;
 }
 
 #waifu.waifu-active {
@@ -61,6 +58,7 @@
 	overflow: hidden;
 	padding: 5px 10px;
 	position: absolute;
+	right: 60px;
 	text-overflow: ellipsis;
 	transition: opacity 1s;
 	width: 250px;
@@ -94,9 +92,10 @@
 	gap: 5px;
 	opacity: 0;
 	position: absolute;
-	right: -10px;
+	right: 10px;
 	top: 70px;
 	transition: opacity 1s;
+	z-index: 10000;
 }
 
 #waifu:hover #waifu-tool {
