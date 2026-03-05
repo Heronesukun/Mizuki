@@ -594,11 +594,11 @@ export const sakuraConfig: SakuraConfig = {
 
 // Pio 看板娘配置
 export const pioConfig: import("./types/config").PioConfig = {
-	enable: true, // 启用看板娘
-	models: ["/pio/models/chino/智乃.model3.json"], // 默认模型路径 (Cubism 5)
-	position: "left", // 默认位置在左侧
-	width: 320, // 默认宽度 (智乃模型较宽)
-	height: 350, // 默认高度 (智乃模型较高)
+	enable: false, // 启用看板娘
+	models: ["/pio/models/pio/model.json"], // 默认模型路径
+	position: "left", // 默认位置在右侧
+	width: 280, // 默认宽度
+	height: 250, // 默认高度
 	mode: "draggable", // 默认为可拖拽模式
 	hiddenOnMobile: true, // 默认在移动设备上隐藏
 	dialog: {
@@ -618,6 +618,15 @@ export const pioConfig: import("./types/config").PioConfig = {
 	},
 };
 
+// Live2D 看板娘配置 (live2d-widget)
+export const live2dConfig: import("./types/config").Live2DConfig = {
+	enable: true, // 启用 live2d-widget
+	live2dPath: "/live2d/", // Live2D 资源路径
+	mobileHidden: true, // 在移动端隐藏
+	position: "left", // 显示在左侧
+	bottom: "0px", // 底部边距
+};
+
 // 导出所有配置的统一接口
 export const widgetConfigs = {
 	profile: profileConfig,
@@ -627,6 +636,7 @@ export const widgetConfigs = {
 	sakura: sakuraConfig,
 	fullscreenWallpaper: fullscreenWallpaperConfig,
 	pio: pioConfig, // 添加 pio 配置
+	live2d: live2dConfig, // 添加 live2d-widget 配置
 	share: shareConfig, // 添加分享配置
 } as const;
 
