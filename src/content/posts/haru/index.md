@@ -8,7 +8,7 @@ author: 拾音
 draft: false
 category: 纪念 
 date: 2025-02-04
-image: "https://mesitemsip.oss-cn-beijing.aliyuncs.com/vrchat/2026-01/VRChat_2026-01-11_19-49-20.094_3840x2160.png"
+image: "http://img.heronesukun.top/vrcpic/2026/01/VRChat_2026-01-11_19-49-20.094_3840x2160.webp?e=1773161331&token=JkSY637Q5cytzsbc20YvF1EYPe3xYaYzT6CPPfXY:Wekcq_quv4-Zrj2rB_pJAwVFzpw="
 ---
 
 ## 立春
@@ -21,7 +21,7 @@ image: "https://mesitemsip.oss-cn-beijing.aliyuncs.com/vrchat/2026-01/VRChat_202
 
 锅炉是心脏，记忆是站台，众人在领航员的带领下，沿着铺在璀璨夜光石上的整木上，进行了一场跨越地域，跨越生死，跨越时间的旅程。
 
-![再高一点](https://mesitemsip.oss-cn-beijing.aliyuncs.com/otherPic/harutime/neri/FFF6940070CCFFA12DD302697C678A9B.jpg "再高一点")
+![再高一点](http://img.heronesukun.top/vrcpic/other/harutime/neri/FFF6940070CCFFA12DD302697C678A9B.webp?e=1773161331&token=JkSY637Q5cytzsbc20YvF1EYPe3xYaYzT6CPPfXY:Wekcq_quv4-Zrj2rB_pJAwVFzpw= "再高一点")
 
 ### 维根主义
 
@@ -36,7 +36,7 @@ image: "https://mesitemsip.oss-cn-beijing.aliyuncs.com/vrchat/2026-01/VRChat_202
 回避与逃避不能解决任何的问题，问题依然在那里，只是被隐藏起来了，更何况社交也不是一个单方面的行为，有了人与人的双向交际才是真实的社交一昧的回避最终伤害的不光是自己，也是伤害了希望靠近与之沟通的人。以自我为中心而忽略了别人的感受，这是对他人的伤害。
 
 不给其他人添麻烦，不意味着完全不依赖其他人，当你在纠结是否会给别人带来过分的困扰的时候，也请站在对方的角度想象，对方是否也在重视着你，维根主义对于物质只保留有索取与拒绝的选项，但世界从来都不是0和博弈，人的情感更不是完全物质的存在，所以在需要的时候，还请多多依靠下其他人。
-![享用](https://mesitemsip.oss-cn-beijing.aliyuncs.com/otherPic/harutime/neri/D18CC05A3F1465D09DD8614FBD87E7D0.jpg "享用")
+![享用](http://img.heronesukun.top/vrcpic/other/harutime/neri/D18CC05A3F1465D09DD8614FBD87E7D0.webp?e=1773161331&token=JkSY637Q5cytzsbc20YvF1EYPe3xYaYzT6CPPfXY:Wekcq_quv4-Zrj2rB_pJAwVFzpw= "享用")
 ### 自害
 
 *成瘾物只能短暂的麻痹自己*
@@ -54,7 +54,7 @@ image: "https://mesitemsip.oss-cn-beijing.aliyuncs.com/vrchat/2026-01/VRChat_202
 追寻美好的事物是人的本能，绚丽绽放在空中的烟花与手上倒垂灿烂的仙女棒，它们都带来了光。阳光、草甸、森林、飞鸟、海洋，星空、花火，这一切美好的东西总会让人向往让人心旷神怡，世界就是一个巨大的宝石箱。
 
 但有的东西是可以共享，让大家一起快乐的，而有的东西却不能共享，放任搅合在一起只会伤害到所有人，想要理清捋顺又会耗费大量的精力，于是逃避的念头又自动浮现上来，就像是两个交织缠绕的线团，能够选中其中一个直接删除掉了，那问题也就消失了，但消失的又不只是问题，线团本身不该这样消失才对。可是要理清楚太叫人费神了。这本应该是美好的事物此刻又变得如此废人心神，但不要逃避，不要正因为它如此美好，每个人都想得到，才会那么的炽热，以至于可能灼烧触碰者。就像是耀眼的花火一样，有声有光，但假如真的靠得太近同样会灼伤。
-![花火](https://mesitemsip.oss-cn-beijing.aliyuncs.com/otherPic/harutime/neri/preview.gif "花火")
+![花火](http://img.heronesukun.top/vrcpic/other/harutime/neri/preview.gif?e=1773161331&token=JkSY637Q5cytzsbc20YvF1EYPe3xYaYzT6CPPfXY:Wekcq_quv4-Zrj2rB_pJAwVFzpw= "花火")
 ### 心脏
 
 *音理的这里已经是那个女孩子的了，但是音理的心永远属于你*
@@ -69,7 +69,7 @@ ATRI为了拯救世界而选择离开夏生，但她本可以不去选择这样�
 但机铠种在坚持结束后全员静默，所有的eva也都消失在冲击中，ATRI在停留在未来的那个时序内，少女也没能迎来她的动画监督。
 
 在那个春天，小音离开在了这个世界上，再也没有雪中的小圣诞老人，也没有那个不听妈妈话要给人添麻烦的美少女模特，更没有了那个爱猫的可爱少女。一切都定格了，停留在了那个立春。
-![小圣诞老人](https://mesitemsip.oss-cn-beijing.aliyuncs.com/otherPic/harutime/neri/shengdanlaoren.png "小圣诞老人")
+![小圣诞老人](http://img.heronesukun.top/vrcpic/other/harutime/neri/shengdanlaoren.webp?e=1773161331&token=JkSY637Q5cytzsbc20YvF1EYPe3xYaYzT6CPPfXY:Wekcq_quv4-Zrj2rB_pJAwVFzpw= "小圣诞老人")
 就如同一开始的那样，所有普通的人，相聚在一起，做着十分日常的事情，但日常本身就是一个接连不断发生的奇迹。生命可能在明天消逝，情感、名利、金钱也都可能突然消失，平凡的日常，普通的日常本就是不常见的。但我们都是普通人，做着普通的事情，会因为有趣的事情高兴，会因为悲伤的事情难过。正因为有了对比，有了情绪起伏，有了与人之间的交际，才显得重要的人更加重要，珍贵的事更加珍贵。如果不存在异同，不存在悲伤也不存在快乐的“补完”的世界，那人也就不再是人了
 
 **从现在开始就要一步步去到夏天了**

@@ -8,7 +8,7 @@ author: 拾音
 draft: false
 category: 随想 
 date: 2025-11-26
-image: "https://mesitemsip.oss-cn-beijing.aliyuncs.com/vrchat/2025-11/VRChat_2025-11-01_01-29-56.891_3840x2160.png"
+image: "http://img.heronesukun.top/vrcpic/2025/11/VRChat_2025-11-01_01-29-56.891_3840x2160.webp?e=1773161331&token=JkSY637Q5cytzsbc20YvF1EYPe3xYaYzT6CPPfXY:Wekcq_quv4-Zrj2rB_pJAwVFzpw="
 ---
 
 ## 哲学的终极命题是生命
