@@ -406,6 +406,59 @@ if (siteConfig.font) {
 		{live2dConfig.enable && (
 			<>
 				<script is:inline src="/live2d/autoload.js"></script>
+				<script is:inline>
+					// View Transitions 兼容：页面切换后完全重新初始化 Live2D
+					document.addEventListener('astro:page-load', function() {
+						// 强制刷新：移除所有 Live2D 元素后重新加载
+						setTimeout(function() {
+							// 检查是否需要重新加载
+							const waifu = document.getElementById('waifu');
+							const toggle = document.getElementById('waifu-toggle');
+							
+							// 如果已经正常显示，直接返回
+							if (waifu && toggle && waifu.offsetParent !== null) {
+								console.log('Live2D already loaded, skipping');
+								return;
+							}
+							
+							console.log('Reloading Live2D...');
+							
+							// 移除所有 Live2D 相关元素
+							['#waifu', '#waifu-toggle', '#waifu-tips', '.waifu-tool', '.waifu-text'].forEach(sel => {
+								document.querySelectorAll(sel).forEach(el => el.remove());
+							});
+							
+							// 移除旧 CSS 和 JS (使用更精确的选择器)
+							document.querySelectorAll('link[href*="waifu.css"]').forEach(el => el.remove());
+							document.querySelectorAll('script[src*="waifu-tips"]').forEach(el => el.remove());
+							
+							// 重新加载 CSS (加版本号强制刷新)
+							const cssLink = document.createElement('link');
+							cssLink.rel = 'stylesheet';
+							cssLink.href = '/live2d/waifu.css?v=' + Date.now();
+							document.head.appendChild(cssLink);
+							
+							// 重新加载 JS
+							const jsScript = document.createElement('script');
+							jsScript.type = 'module';
+							jsScript.src = '/live2d/waifu-tips.js';
+							jsScript.onload = function() {
+								if (window.initWidget) {
+									window.initWidget({
+										waifuPath: '/live2d/waifu-tips.json',
+										cdnPath: '/live2d/',
+										cubism2Path: '/live2d/live2d.min.js',
+										cubism5Path: '/live2d/CubismSdkForWeb-5-r.4/Core/live2dcubismcore.min.js',
+										tools: ['hitokoto', 'asteroids', 'switch-model', 'switch-texture', 'photo', 'info', 'quit'],
+										logLevel: 'warn',
+										drag: false,
+									});
+								}
+							};
+							document.head.appendChild(jsScript);
+						}, 50);
+					});
+				</script>
 				{live2dConfig.mobileHidden && (
 					<script is:inline>
 						// 移动端隐藏 Live2D
